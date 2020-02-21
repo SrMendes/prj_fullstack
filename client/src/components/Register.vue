@@ -1,26 +1,35 @@
 <template>
   <div>
   <h1>Register</h1>
-   <input type="text" name="email" placeholder="email"/>
+   <input type="text" name="email" placeholder="email" v-model="email"/>
    <br>
-  <input type="password" name="password" placeholder="password"/>
+     <input type="password" name="password" placeholder="password" v-model="password"/>
   <br>
-  <button>Register</button>
+    <button @click="register">Register</button>
 
   </div>
 
 </template>
 
 <script>
+import AuthenticationService from '@/services/AuthenticationService'
 export default {
-  
+
   data () {
     return {
-      
+      email: 'caca',
+      password: ''
+    }
+  },
+
+  methods: {
+    async register () {
+      const response = AuthenticationService.register({
+        email: this.email,
+        password: this.password
+      })
+      console.log(response.data)
     }
   }
 }
 </script>
-
-
-</style>
